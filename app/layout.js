@@ -1,5 +1,8 @@
 import localFont from "next/font/local";
 import "./globals.css";
+import Navbar from './Navbar';
+import Footer from './Footer';
+import { FavoritesProvider } from './FavoritesContext';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,7 +24,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <FavoritesProvider>
+          <Navbar />
+
+          {/* Fő tartalom */}
+          <main>
+            {children}
+          </main>
+
+          {/* Lábléc */}
+          <Footer />
+        </FavoritesProvider>
       </body>
     </html>
   );
